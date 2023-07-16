@@ -9,7 +9,6 @@ const path = require('path');
 const app = express();
 app.use(bodyParser.json());
 
-// Configure and start local storage
 storage1.init().then(() => {
   console.log('Local storage1 is ready');
 }).catch(err => {
@@ -25,7 +24,7 @@ storage1.init().then(() => {
 });
 
 const upload = multer({ storage });
-// Swagger setup
+
 const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
@@ -39,22 +38,6 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-/**
- * @swagger
- * /api/todos:
- *   get:
- *     summary: Get all todos
- *     responses:
- *       200:
- *         description: Successful operation
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Todo'
- */
 app.get('/',(req,res)=>
 {
   res.sendFile(__dirname+"/index.html");
@@ -107,25 +90,6 @@ app.get('/image/:id', (req, res) => {
 app.get('/refresh', (req, res) => {
   res.redirect('/'); // Redirect to the root URL or any other desired URL
 });
-/**
- * @swagger
- * /api/todos:
- *   post:
- *     summary: Create a new todo
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Todo'
- *     responses:
- *       201:
- *         description: Successful operation
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Todo'
- */
 app.post('/api/todos', async (req, res) => {
   const newTodo = req.body;
   const todos1 = await storage1.getItem('todos') || [];
@@ -143,22 +107,6 @@ app.post('/api/todos', async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /api/todos/{id}:
- *   delete:
- *     summary: Delete a todo by ID
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: Todo ID
- *     responses:
- *       204:
- *         description: Successful operation
- */
 app.delete('/api/todos/:id', async (req, res) => {
   const todoId = req.params.id;
 
@@ -176,32 +124,6 @@ app.delete('/api/todos/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-/**
- * @swagger
- * /api/todos/{id}:
- *   put:
- *     summary: Update a todo by ID
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: Todo ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Todo'
- *     responses:
- *       200:
- *         description: Successful operation
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Todo'
- */
 app.put('/api/todos/:id', async (req, res) => {
   const todoId = req.params.id;
   const updatedTodo = req.body;
