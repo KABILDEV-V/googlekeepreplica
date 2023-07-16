@@ -2,18 +2,9 @@
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const add=document.getElementById('add');
-// Function to render the todos in the list
-// const renderTodos = (todos) => {
-//   todoList.innerHTML = '';
 
-//   todos.forEach((todo) => {
-//     const li = document.createElement('li');
-//     li.textContent = todo.title;
-//     todoList.appendChild(li);
-//   });
-// };
 
-//Function to fetch todos from the server
+
 const fetchTodos = async () => {
   try {
     const response = await fetch('/api/todos');
@@ -62,8 +53,7 @@ searchButton.addEventListener('click', () => {
   searchTodos(searchTerm);
 });
 
-// Fetch todos on page load
-//fetchTodos();
+
 
     const todoForm = document.getElementById('todoForm');
     const titleInput1=document.getElementById('titleInput1');
@@ -107,7 +97,7 @@ const updateTodo = (id, title) => {
         const words = data.title;
         console.log(words);
       const word1=words.split("\n");
-      var str="";
+      const str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
@@ -134,11 +124,11 @@ const createTodo = (title) => {
   })
     .then((response) => response.json())
      .then((data) => {
-      var idlist=[]
+      const idlist=[]
     data.forEach((todo1) => {
       idlist.push(todo1.id);
     });
-    var todo=data[data.length-1];
+    const todo=data[data.length-1];
       console.log("hi");
       const li = document.createElement('li');
       li.id="item";
@@ -149,7 +139,7 @@ const createTodo = (title) => {
       console.log(words);
       const word1=words.split("\n");
       h1.textContent=word1[0];
-      var str="";
+      const str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
@@ -190,10 +180,10 @@ const createTodo = (title) => {
       const updateButton = document.createElement('button');
       updateButton.textContent = 'Update';
       updateButton.addEventListener('click', () => {
-        var textarea1 = document.getElementsByTagName("textarea");
-        var i= idlist.indexOf(todo.id);
+        const textarea1 = document.getElementsByTagName("textarea");
+        const i= idlist.indexOf(todo.id);
         console.log(textarea1[i+1].value)
-        updatedTitle=word1[0]+'\n'+textarea1[i].value;
+        const updatedTitle=word1[0]+'\n'+textarea1[i].value;
       
         if (updatedTitle) {
           updateTodo(todo.id, updatedTitle);
@@ -226,7 +216,7 @@ const createTodo = (title) => {
 fetch('/api/todos')
   .then((response) => response.json())
   .then((data) => {
-    var idlist=[]
+    const idlist=[]
     data.forEach((todo) => {
       const li = document.createElement('li');
       li.id="item"+String(todo.class);
@@ -236,7 +226,7 @@ fetch('/api/todos')
       const word1=words.split("\n");
       
       h1.textContent=word1[0];
-      var str="";
+      const str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
@@ -290,10 +280,10 @@ fetch('/api/todos')
       itag.className="fa-solid fa-pen-to-square fa-bounce";
       updateButton.appendChild(itag);
       updateButton.addEventListener('click', () => {
-        var textarea1 = document.getElementsByTagName("textarea");
-        var i= idlist.indexOf(todo.id);
+        const textarea1 = document.getElementsByTagName("textarea");
+        const i= idlist.indexOf(todo.id);
         console.log(i)
-        updatedTitle=word1[0]+'\n'+textarea1[i+1].value;
+       const updatedTitle=word1[0]+'\n'+textarea1[i+1].value;
       console.log(updatedTitle);
         if (updatedTitle) {
           updateTodo(todo.id, updatedTitle);
@@ -334,7 +324,7 @@ add.addEventListener('click', () => {
 });
 
  
-      var listItems = document.querySelectorAll('li');
+      const listItems = document.querySelectorAll('li');
   
       listItems.forEach(function(item) {
         item.addEventListener('dragstart', dragStart);
@@ -375,14 +365,14 @@ add.addEventListener('click', () => {
   
       function dragDrop(event) {
         event.preventDefault();
-        var data = event.dataTransfer.getData('text/plain');
-        var element = document.getElementById(data);
+        const data = event.dataTransfer.getData('text/plain');
+        const element = document.getElementById(data);
         event.target.appendChild(element);
         event.target.style.backgroundColor = 'lightgray';
       }
       function loadImage(id,class1) {
-      var imageElement = document.getElementsByTagName('img');
-      var imageUrl = `/image/${id}`; // URL to retrieve the image, modify if needed
+      const imageElement = document.getElementsByTagName('img');
+      const imageUrl = `/image/${id}`; // URL to retrieve the image, modify if needed
 
       fetch(imageUrl)
         .then(response => {
