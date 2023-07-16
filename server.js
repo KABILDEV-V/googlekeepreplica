@@ -14,7 +14,7 @@ storage1.init().then(() => {
 }).catch(err => {
   console.error('Failed to initialize local storage:', err);
 });
- storage = multer.diskStorage({
+ const storage = multer.diskStorage({
   destination: './uploads',
   filename: function (req, file, callback) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -60,7 +60,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
   const source = req.file.path;
   console.log(req.file.fieldname);
-  const destination = path.join(__dirname, 'local-storage', req.body.id+'jpg');
+  const destination = path.join(__dirname, 'local-storage', req.body.id+'.jpg');
 
   fs.copyFile(source, destination, (err) => {
     if (err) {
@@ -75,7 +75,7 @@ app.get('/image/:id', (req, res) => {
   console.log("jk");
   console.log(req.params.id);
 
-  const imagePath = path.join(__dirname, 'local-storage', req.params.id+'jpg'); // Replace 'image.jpg' with the actual filename
+  const imagePath = path.join(__dirname, 'local-storage', req.params.id+'.jpg');
 
   fs.readFile(imagePath, (err, data) => {
     if (err) {
