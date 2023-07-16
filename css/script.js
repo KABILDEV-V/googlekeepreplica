@@ -64,7 +64,7 @@ titleInput1.addEventListener('click',()=>
   document.getElementById('note1').style.display="inline";
   document.getElementById('note1').style.height="90px";
 })
-// Function to delete a ToDo item
+
 const deleteTodo = (id) => {
   fetch(`/api/todos/${id}`, {
     method: 'DELETE',
@@ -79,7 +79,7 @@ const deleteTodo = (id) => {
       console.error('Error deleting ToDo:', error);
     });
 };
-// Function to update a ToDo item
+// Function to update 
 const updateTodo = (id, title) => {
   const todo = { title };
 
@@ -111,7 +111,7 @@ const updateTodo = (id, title) => {
     });
 };
 
-// Function to create a ToDo item
+// Function to create a 
 const createTodo = (title) => {
   const todo = { title };
 
@@ -212,7 +212,7 @@ const createTodo = (title) => {
     });
 };
 
-// Fetch all ToDo items from the API and display them
+
 fetch('/api/todos')
   .then((response) => response.json())
   .then((data) => {
@@ -316,7 +316,7 @@ fetch('/api/todos')
     console.error('Error fetching ToDo items:', error);
   });
 
-// Submit the form to create a new ToDo item
+
 add.addEventListener('click', () => {
   
   const title =titleInput1.value+'\n'+titleInput.value;
