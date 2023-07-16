@@ -226,7 +226,7 @@ fetch('/api/todos')
       const word1=words.split("\n");
       
       h1.textContent=word1[0];
-      const str="";
+      let str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
