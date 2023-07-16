@@ -1,9 +1,7 @@
 
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
-const add=document.getElementById('add');
-
-
+const add1=document.getElementById('add');
 
 const fetchTodos = async () => {
   try {
@@ -19,7 +17,7 @@ const fetchTodos = async () => {
   }
 };
 
-// Function to search todos by title
+
 const searchTodos = async (searchTerm) => {
   try {
     const response = await fetch(`/api/todos?search=${encodeURIComponent(searchTerm)}`);
@@ -47,12 +45,11 @@ const searchTodos = async (searchTerm) => {
   }
 };
 
-// Event listener for search button click
+
 searchButton.addEventListener('click', () => {
   const searchTerm = searchInput.value.trim();
   searchTodos(searchTerm);
 });
-
 
 
     const todoForm = document.getElementById('todoForm');
@@ -79,7 +76,7 @@ const deleteTodo = (id) => {
       console.error('Error deleting ToDo:', error);
     });
 };
-// Function to update 
+
 const updateTodo = (id, title) => {
   const todo = { title };
 
@@ -97,7 +94,7 @@ const updateTodo = (id, title) => {
         const words = data.title;
         console.log(words);
       const word1=words.split("\n");
-     let str="";
+      var str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
@@ -111,7 +108,7 @@ const updateTodo = (id, title) => {
     });
 };
 
-// Function to create a 
+
 const createTodo = (title) => {
   const todo = { title };
 
@@ -123,90 +120,7 @@ const createTodo = (title) => {
     body: JSON.stringify(todo),
   })
     .then((response) => response.json())
-     .then((data) => {
-      const idlist=[]
-    data.forEach((todo1) => {
-      idlist.push(todo1.id);
-    });
-    const todo=data[data.length-1];
-      console.log("hi");
-      const li = document.createElement('li');
-      li.id="item";
-      const h1=document.createElement('h1');
-      const text=document.createElement('textarea');
 
-      const words = todo.title;
-      console.log(words);
-      const word1=words.split("\n");
-      h1.textContent=word1[0];
-      let str="";
-      for(let j=1;j<word1.length;j++)
-      {
-        str+=word1[j];
-        str+='\n';
-      }
-      text.value=str;
-      
-      const form=document.createElement('form')
-      form.action="/upload";
-      form.method="post";
-      form.className="form1";
-      form.enctype="multipart/form-data";
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name='image';
-        fileInput.accept="image/*";
-
-
-        const fileInput1 = document.createElement('input');
-        fileInput1.type = 'text';
-        fileInput1.style.display="none";
-        console.log(todo.id);
-        fileInput1.value=todo.id;
-        fileInput1.name="id";
-
-        // body: JSON.stringify({ id: 123 })
-        const sub=document.createElement('button');
-        sub.type='submit';
-        sub.textContent="submit";
-        form.appendChild(fileInput);
-     
-        form.appendChild(fileInput1);
-        form.appendChild(sub);
-       
-        const img= document.createElement('img');
-        img.src="";
-        img.alt="Uploaded Image";
-      const updateButton = document.createElement('button');
-      updateButton.textContent = 'Update';
-      updateButton.addEventListener('click', () => {
-        const textarea1 = document.getElementsByTagName("textarea");
-        const i= idlist.indexOf(todo.id);
-        console.log(textarea1[i+1].value)
-        const updatedTitle=word1[0]+'\n'+textarea1[i].value;
-      
-        if (updatedTitle) {
-          updateTodo(todo.id, updatedTitle);
-        }
-      });
-
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.addEventListener('click', () => {
-        deleteTodo(todo.id);
-      });
-      li.appendChild(h1);
-      li.appendChild(text);
-      li.appendChild(updateButton);
-      li.appendChild(deleteButton);
-      li.append(form);
-      li.append(img);
-      li.id = todo.id;
-      todoList.appendChild(li);
-      todoList.appendChild(li);
-      titleInput.value = '';
-      titleInput1.value=''
-    })
     .catch((error) => {
       console.error('Error creating ToDo:', error);
     });
@@ -216,7 +130,7 @@ const createTodo = (title) => {
 fetch('/api/todos')
   .then((response) => response.json())
   .then((data) => {
-    const idlist=[]
+    var idlist=[]
     data.forEach((todo) => {
       const li = document.createElement('li');
       li.id="item"+String(todo.class);
@@ -236,40 +150,31 @@ fetch('/api/todos')
       
       
       const form=document.createElement('form')
-      form.action="/upload";
+      form.action="/upload1";
       form.method="post";
       form.enctype="multipart/form-data";
-      const labelfile=document.createElement('label');
-      labelfile.setAttribute('for', 'file1');
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name='image';
-        fileInput.id="file1";
-        const itag2=document.createElement('i');
-      itag2.className="fa-regular fa-image";
-      
         fileInput.accept="image/*";
-        labelfile.appendChild(itag2);
+        const la=document.createElement('label');
+        la.textContent="id";
 
         const fileInput1 = document.createElement('input');
         fileInput1.type = 'text';
-        fileInput1.style.display="none";
         console.log(todo.id);
         fileInput1.value=todo.id;
         fileInput1.name="id";
-        // body: JSON.stringify({ id: 123 })
+
+       
         const sub=document.createElement('button');
         sub.type='submit';
-        const itag3=document.createElement('i');
-      itag3.className="fa-solid fa-cloud-arrow-up";
-        sub.textContent="";
-        sub.appendChild(itag3);
-        form.appendChild(labelfile);
+        sub.textContent="submit";
         form.appendChild(fileInput);
-     
+        form.appendChild(la);
         form.appendChild(fileInput1);
         form.appendChild(sub);
-       
+        
         const img= document.createElement('img');
 
         img.src="";
@@ -280,10 +185,10 @@ fetch('/api/todos')
       itag.className="fa-solid fa-pen-to-square fa-bounce";
       updateButton.appendChild(itag);
       updateButton.addEventListener('click', () => {
-        const textarea1 = document.getElementsByTagName("textarea");
-        const i= idlist.indexOf(todo.id);
+        var textarea1 = document.getElementsByTagName("textarea");
+        var i= idlist.indexOf(todo.id);
         console.log(i)
-       const updatedTitle=word1[0]+'\n'+textarea1[i+1].value;
+        updatedTitle=word1[0]+'\n'+textarea1[i+1].value;
       console.log(updatedTitle);
         if (updatedTitle) {
           updateTodo(todo.id, updatedTitle);
@@ -317,14 +222,14 @@ fetch('/api/todos')
   });
 
 
-add.addEventListener('click', () => {
+add1.addEventListener('click', () => {
   
   const title =titleInput1.value+'\n'+titleInput.value;
   createTodo(title);
 });
 
  
-      const listItems = document.querySelectorAll('li');
+      var listItems = document.querySelectorAll('li');
   
       listItems.forEach(function(item) {
         item.addEventListener('dragstart', dragStart);
@@ -365,14 +270,14 @@ add.addEventListener('click', () => {
   
       function dragDrop(event) {
         event.preventDefault();
-        const data = event.dataTransfer.getData('text/plain');
-        const element = document.getElementById(data);
+        var data = event.dataTransfer.getData('text/plain');
+        var element = document.getElementById(data);
         event.target.appendChild(element);
         event.target.style.backgroundColor = 'lightgray';
       }
       function loadImage(id,class1) {
-      const imageElement = document.getElementsByTagName('img');
-      const imageUrl = `/image/${id}`; // URL to retrieve the image, modify if needed
+      var imageElement = document.getElementsByTagName('img');
+      var imageUrl = `/image/${id}`; 
 
       fetch(imageUrl)
         .then(response => {
