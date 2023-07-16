@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo App</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+</head>
+
+<body>
+  <div class="to" >
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class="fa-sharp fa-solid fa-house-chimney" style="color: #f5f3f3; padding-left: 20px; padding-top: 20px;"></i>
+      <i class="fa-solid fa-circle-xmark" style="color: #f6f6f6;" id="cancel"></i>
+  </label>  
+  <div class="slidebar">
+       <ol>
+            <li><i class="fa-solid fa-lightbulb"></i><a href="/"> Notes</a></li><br>
+            <li> <i class="fa-solid fa-bell"></i><a href="">Remainder</a></li><br>
+            <li> <i class="fa-solid fa-square-pen"></i><a href="#">EditLables</a></li><br>
+            <li> <i class="fa-solid fa-inbox"></i><a href="#">Archive</a></li><br>
+            <li><i class="fa-solid fa-trash"></i><a href="#"> Trash</a></li>
+            
+      </ol>
+  </div>
+  
+<div class="searchbar">
+   <input type="text" id="searchInput" placeholder="Search by title">
+   <button type="button" id="searchButton"><i class="fa-brands fa-searchengin"></i></button>
+   
+</div>   
+
+<h2>Neo Keep</h2>
+</div>
+<form id="todoForm">
+  <div class="entrytask title">
+  <input type="textarea" id="titleInput1" placeholder="Enter a title" required>
+  </div>
+<div id="note1">
+  <div   class="entrytask note" >
+  <textarea rows="5" cols="21" id="titleInput" style="border-style: double; border-color: rgb(251, 251, 251);"></textarea>
+  </div>
+  <button id="add"><i class="fa-solid fa-plus"></i></button>
+</div>
+  
+</div>
+
+</form>
+
+
+<ul id="todoList" class="list table"></ul>
+  <script src="/script.js" >
+  
+  </script>
+</body>
+
+</html>

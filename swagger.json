@@ -1,0 +1,48 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Image API",
+      "version": "1.0.0",
+      "description": "API for image upload and retrieval"
+    },
+    "paths": {
+      "/upload": {
+        "post": {
+          "summary": "Upload an image",
+          "tags": ["Image"],
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Image uploaded successfully"
+            }
+          }
+        }
+      },
+      "/image": {
+        "get": {
+          "summary": "Retrieve the uploaded image",
+          "tags": ["Image"],
+          "responses": {
+            "200": {
+              "description": "Image retrieved successfully"
+            }
+          }
+        }
+      }
+    }
+  }
+  
