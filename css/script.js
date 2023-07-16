@@ -97,7 +97,7 @@ const updateTodo = (id, title) => {
         const words = data.title;
         console.log(words);
       const word1=words.split("\n");
-      const str="";
+     let str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
@@ -139,7 +139,7 @@ const createTodo = (title) => {
       console.log(words);
       const word1=words.split("\n");
       h1.textContent=word1[0];
-      const str="";
+      let str="";
       for(let j=1;j<word1.length;j++)
       {
         str+=word1[j];
